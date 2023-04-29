@@ -1,0 +1,1 @@
+document.querySelector('.footer__copyright').textContent = `© Copyright Termly ${new Date().getFullYear()}`
