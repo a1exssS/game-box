@@ -152,76 +152,79 @@ if (document.querySelector('.main-minesweeper')) {
 			t()
 		})
 }
-let C = {x: 0, y: 0},
-	L = {x: 0, y: 0}
-window.addEventListener('keydown', t => {
-	let e = t.keyCode
-	setTimeout(() => {
-		if (e == 37 || e == 65) {
-			if ((document.querySelector('.snake__snake').classList.add('left'), L.x !== 0)) return
-			C = {x: -1, y: 0}
-		} else if (e == 38 || e == 87) {
-			if ((document.querySelector('.snake__snake').classList.add('top'), L.y !== 0)) return
-			C = {x: 0, y: -1}
-		} else if (e == 39 || e == 68) {
-			if ((document.querySelector('.snake__snake').classList.add('right'), L.x !== 0)) return
-			C = {x: 1, y: 0}
-		} else if (e == 40 || e == 83) {
-			if ((document.querySelector('.snake__snake').classList.add('bottom'), L.y !== 0)) return
-			C = {x: 0, y: 1}
-		}
-	}, 1)
-})
-function se() {
-	return (L = C), C
-}
-const ne = 10
-let P = 0
-const g = [{x: 17, y: 17}]
-function ie() {
-	ce()
-	const t = se()
-	for (let e = g.length - 2; e >= 0; e--) g[e + 1] = {...g[e]}
-	;(g[0].x += t.x), (g[0].y += t.y)
-}
-function re(t) {
-	g.forEach(e => {
-		const n = document.createElement('div')
-		;(n.style.gridRowStart = e.y), (n.style.gridColumnStart = e.x), n.classList.add('snake__snake'), t.appendChild(n)
-	})
-}
-function T(t, {ignoreHead: e = !1} = {}) {
-	return g.some((n, o) => (e && o == 0 ? !1 : oe(n, t)))
-}
-function oe(t, e) {
-	return t.x === e.x && t.y === e.y
-}
-function ae(t) {
-	P += t
-}
-function ce() {
-	for (let t = 0; t < P; t++) g.push({...g[g.length - 1]})
-	P = 0
-}
-const E = 35,
-	le = 1
-let D = $()
-function he() {
-	T(D) && (ae(le), (D = $()))
-}
-function de(t) {
-	const e = document.createElement('div')
-	;(e.style.gridRowStart = D.y), (e.style.gridColumnStart = D.x), e.classList.add('snake__food'), t.appendChild(e)
-}
-function $() {
-	let t
-	for (; t == null || T(t); ) t = ue()
-	return t
-}
-function ue() {
-	return {x: Math.floor(Math.random() * E) + 1, y: Math.floor(Math.random() * E) + 1}
-}
+// if(document.querySelector('.main-snake')){
+
+// }
 if (document.querySelector('.main-snake')) {
+	let C = {x: 0, y: 0},
+		L = {x: 0, y: 0}
+	window.addEventListener('keydown', t => {
+		let e = t.keyCode
+		setTimeout(() => {
+			if (e == 37 || e == 65) {
+				if ((document.querySelector('.snake__snake').classList.add('left'), L.x !== 0)) return
+				C = {x: -1, y: 0}
+			} else if (e == 38 || e == 87) {
+				if ((document.querySelector('.snake__snake').classList.add('top'), L.y !== 0)) return
+				C = {x: 0, y: -1}
+			} else if (e == 39 || e == 68) {
+				if ((document.querySelector('.snake__snake').classList.add('right'), L.x !== 0)) return
+				C = {x: 1, y: 0}
+			} else if (e == 40 || e == 83) {
+				if ((document.querySelector('.snake__snake').classList.add('bottom'), L.y !== 0)) return
+				C = {x: 0, y: 1}
+			}
+		}, 1)
+	})
+	function se() {
+		return (L = C), C
+	}
+	const ne = 10
+	let P = 0
+	const g = [{x: 17, y: 17}]
+	function ie() {
+		ce()
+		const t = se()
+		for (let e = g.length - 2; e >= 0; e--) g[e + 1] = {...g[e]}
+		;(g[0].x += t.x), (g[0].y += t.y)
+	}
+	function re(t) {
+		g.forEach(e => {
+			const n = document.createElement('div')
+			;(n.style.gridRowStart = e.y), (n.style.gridColumnStart = e.x), n.classList.add('snake__snake'), t.appendChild(n)
+		})
+	}
+	function T(t, {ignoreHead: e = !1} = {}) {
+		return g.some((n, o) => (e && o == 0 ? !1 : oe(n, t)))
+	}
+	function oe(t, e) {
+		return t.x === e.x && t.y === e.y
+	}
+	function ae(t) {
+		P += t
+	}
+	function ce() {
+		for (let t = 0; t < P; t++) g.push({...g[g.length - 1]})
+		P = 0
+	}
+	const E = 35,
+		le = 1
+	let D = $()
+	function he() {
+		T(D) && (ae(le), (D = $()))
+	}
+	function de(t) {
+		const e = document.createElement('div')
+		;(e.style.gridRowStart = D.y), (e.style.gridColumnStart = D.x), e.classList.add('snake__food'), t.appendChild(e)
+	}
+	function $() {
+		let t
+		for (; t == null || T(t); ) t = ue()
+		return t
+	}
+	function ue() {
+		return {x: Math.floor(Math.random() * E) + 1, y: Math.floor(Math.random() * E) + 1}
+	}
 	let o = function (m) {
 			if (e) {
 				document.querySelector('.snake__gameover').style.display = 'flex'
