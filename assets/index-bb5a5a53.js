@@ -261,352 +261,352 @@ if (document.querySelector('.main-snake')) {
 		window.requestAnimationFrame(o)
 }
 if (document.querySelector('.main-pacman')) {
-}
-class me {
-	constructor(e, n, o, i, c) {
-		;(this.x = e),
-			(this.y = n),
-			(this.width = o),
-			(this.height = i),
-			(this.speed = c),
-			(this.direction = v),
-			(this.nextDirection = this.direction),
-			(this.frameCount = 7),
-			(this.currentFrame = 1),
-			setInterval(() => {
-				this.changeAnimation()
-			}, 100)
-	}
-	moveProcess() {
-		if ((this.changeDirectionIfPossible(), this.moveForwards(), this.checkCollisions())) {
-			this.moveBackwards()
-			return
+	class me {
+		constructor(e, n, o, i, c) {
+			;(this.x = e),
+				(this.y = n),
+				(this.width = o),
+				(this.height = i),
+				(this.speed = c),
+				(this.direction = v),
+				(this.nextDirection = this.direction),
+				(this.frameCount = 7),
+				(this.currentFrame = 1),
+				setInterval(() => {
+					this.changeAnimation()
+				}, 100)
 		}
-	}
-	eat() {
-		for (let e = 0; e < a.length; e++) for (let n = 0; n < a[0].length; n++) a[e][n] == 2 && this.getMapX() == n && this.getMapY() == e && ((a[e][n] = 3), _e())
-	}
-	moveBackwards() {
-		switch (this.direction) {
-			case v:
-				this.x -= this.speed
-				break
-			case I:
-				this.y += this.speed
-				break
-			case S:
-				this.x += this.speed
-				break
-			case q:
-				this.y -= this.speed
-				break
-		}
-	}
-	moveForwards() {
-		switch (this.direction) {
-			case v:
-				this.x += this.speed
-				break
-			case I:
-				this.y -= this.speed
-				break
-			case S:
-				this.x -= this.speed
-				break
-			case q:
-				this.y += this.speed
-				break
-		}
-	}
-	checkCollisions() {
-		let e = !1
-		return (a[parseInt(this.y / s)][parseInt(this.x / s)] == 1 || a[parseInt(this.y / s + 0.9999)][parseInt(this.x / s)] == 1 || a[parseInt(this.y / s)][parseInt(this.x / s + 0.9999)] == 1 || a[parseInt(this.y / s + 0.9999)][parseInt(this.x / s + 0.9999)] == 1) && (e = !0), e
-	}
-	checkGhostCollision() {
-		for (let e = 0; e < b.length; e++) {
-			let n = b[e]
-			if (n.getMapX() == this.getMapX() && n.getMapY() == this.getMapY()) return !0
-		}
-		return !1
-	}
-	changeDirectionIfPossible() {
-		if (this.direction == this.nextDirection) return
-		let e = this.direction
-		;(this.direction = this.nextDirection), this.moveForwards(), this.checkCollisions() ? (this.moveBackwards(), (this.direction = e)) : this.moveBackwards()
-	}
-	changeAnimation() {
-		this.currentFrame = this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1
-	}
-	draw() {
-		l.save(), l.translate(this.x + s / 2, this.y + s / 2), l.rotate((this.direction * 90 * Math.PI) / 180), l.translate(-this.x - s / 2, -this.y - s / 2), l.drawImage(j, (this.currentFrame - 1) * s, 0, s, s, this.x, this.y, this.width, this.height), l.restore()
-	}
-	getMapX() {
-		return parseInt(this.x / s)
-	}
-	getMapY() {
-		return parseInt(this.y / s)
-	}
-	getMapXRightSide() {
-		return parseInt((this.x * 0.99 + s) / s)
-	}
-	getMapYRightSide() {
-		return parseInt((this.y * 0.99 + s) / s)
-	}
-}
-class fe {
-	constructor(e, n, o, i, c, r, h, y, p, u) {
-		;(this.x = e),
-			(this.y = n),
-			(this.width = o),
-			(this.height = i),
-			(this.speed = c),
-			(this.direction = v),
-			(this.imageX = r),
-			(this.imageY = h),
-			(this.imageHeight = p),
-			(this.imageWidth = y),
-			(this.range = u),
-			(this.randomTargetIndex = parseInt(Math.random() * 4)),
-			(this.target = W[this.randomTargetIndex]),
-			setInterval(() => {
-				this.changeRandomDirection()
-			}, 1e4)
-	}
-	changeRandomDirection() {
-		;(this.randomTargetIndex += parseInt(Math.random() * 4)), (this.randomTargetIndex = this.randomTargetIndex % 4)
-	}
-	moveProcess() {
-		if ((this.isInRange() ? (this.target = f) : (this.target = W[this.randomTargetIndex]), this.changeDirectionIfPossible(), this.moveForwards(), this.checkCollisions())) {
-			this.moveBackwards()
-			return
-		}
-	}
-	moveBackwards() {
-		switch (this.direction) {
-			case v:
-				this.x -= this.speed
-				break
-			case I:
-				this.y += this.speed
-				break
-			case S:
-				this.x += this.speed
-				break
-			case q:
-				this.y -= this.speed
-				break
-		}
-	}
-	moveForwards() {
-		switch (this.direction) {
-			case v:
-				this.x += this.speed
-				break
-			case I:
-				this.y -= this.speed
-				break
-			case S:
-				this.x -= this.speed
-				break
-			case q:
-				this.y += this.speed
-				break
-		}
-	}
-	checkCollisions() {
-		let e = !1
-		return (a[parseInt(this.y / s)][parseInt(this.x / s)] == 1 || a[parseInt(this.y / s + 0.9999)][parseInt(this.x / s)] == 1 || a[parseInt(this.y / s)][parseInt(this.x / s + 0.9999)] == 1 || a[parseInt(this.y / s + 0.9999)][parseInt(this.x / s + 0.9999)] == 1) && (e = !0), e
-	}
-	isInRange() {
-		let e = Math.abs(f.getMapX() - this.getMapX()),
-			n = Math.abs(f.getMapY() - this.getMapY())
-		return Math.sqrt(e * e + n * n) <= this.range
-	}
-	changeDirectionIfPossible() {
-		let e = this.direction
-		if (((this.direction = this.calculateNewDirection(a, parseInt(this.target.x / s), parseInt(this.target.y / s))), typeof this.direction > 'u')) {
-			this.direction = e
-			return
-		}
-		this.getMapY() != this.getMapYRightSide() && (this.direction == S || this.direction == v) && (this.direction = I), this.getMapX() != this.getMapXRightSide() && this.direction == I && (this.direction = S), this.moveForwards(), this.checkCollisions() ? (this.moveBackwards(), (this.direction = e)) : this.moveBackwards()
-	}
-	calculateNewDirection(e, n, o) {
-		let i = []
-		for (let r = 0; r < e.length; r++) i[r] = e[r].slice()
-		let c = [{x: this.getMapX(), y: this.getMapY(), rightX: this.getMapXRightSide(), rightY: this.getMapYRightSide(), moves: []}]
-		for (; c.length > 0; ) {
-			let r = c.shift()
-			if (r.x == n && r.y == o) return r.moves[0]
-			{
-				i[r.y][r.x] = 1
-				let h = this.addNeighbors(r, i)
-				for (let y = 0; y < h.length; y++) c.push(h[y])
+		moveProcess() {
+			if ((this.changeDirectionIfPossible(), this.moveForwards(), this.checkCollisions())) {
+				this.moveBackwards()
+				return
 			}
 		}
-		return 1
-	}
-	addNeighbors(e, n) {
-		let o = [],
-			i = n.length,
-			c = n[0].length
-		if (e.x - 1 >= 0 && e.x - 1 < i && n[e.y][e.x - 1] != 1) {
-			let r = e.moves.slice()
-			r.push(S), o.push({x: e.x - 1, y: e.y, moves: r})
+		eat() {
+			for (let e = 0; e < a.length; e++) for (let n = 0; n < a[0].length; n++) a[e][n] == 2 && this.getMapX() == n && this.getMapY() == e && ((a[e][n] = 3), _e())
 		}
-		if (e.x + 1 >= 0 && e.x + 1 < i && n[e.y][e.x + 1] != 1) {
-			let r = e.moves.slice()
-			r.push(v), o.push({x: e.x + 1, y: e.y, moves: r})
+		moveBackwards() {
+			switch (this.direction) {
+				case v:
+					this.x -= this.speed
+					break
+				case I:
+					this.y += this.speed
+					break
+				case S:
+					this.x += this.speed
+					break
+				case q:
+					this.y -= this.speed
+					break
+			}
 		}
-		if (e.y - 1 >= 0 && e.y - 1 < c && n[e.y - 1][e.x] != 1) {
-			let r = e.moves.slice()
-			r.push(I), o.push({x: e.x, y: e.y - 1, moves: r})
+		moveForwards() {
+			switch (this.direction) {
+				case v:
+					this.x += this.speed
+					break
+				case I:
+					this.y -= this.speed
+					break
+				case S:
+					this.x -= this.speed
+					break
+				case q:
+					this.y += this.speed
+					break
+			}
 		}
-		if (e.y + 1 >= 0 && e.y + 1 < c && n[e.y + 1][e.x] != 1) {
-			let r = e.moves.slice()
-			r.push(q), o.push({x: e.x, y: e.y + 1, moves: r})
+		checkCollisions() {
+			let e = !1
+			return (a[parseInt(this.y / s)][parseInt(this.x / s)] == 1 || a[parseInt(this.y / s + 0.9999)][parseInt(this.x / s)] == 1 || a[parseInt(this.y / s)][parseInt(this.x / s + 0.9999)] == 1 || a[parseInt(this.y / s + 0.9999)][parseInt(this.x / s + 0.9999)] == 1) && (e = !0), e
 		}
-		return o
+		checkGhostCollision() {
+			for (let e = 0; e < b.length; e++) {
+				let n = b[e]
+				if (n.getMapX() == this.getMapX() && n.getMapY() == this.getMapY()) return !0
+			}
+			return !1
+		}
+		changeDirectionIfPossible() {
+			if (this.direction == this.nextDirection) return
+			let e = this.direction
+			;(this.direction = this.nextDirection), this.moveForwards(), this.checkCollisions() ? (this.moveBackwards(), (this.direction = e)) : this.moveBackwards()
+		}
+		changeAnimation() {
+			this.currentFrame = this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1
+		}
+		draw() {
+			l.save(), l.translate(this.x + s / 2, this.y + s / 2), l.rotate((this.direction * 90 * Math.PI) / 180), l.translate(-this.x - s / 2, -this.y - s / 2), l.drawImage(j, (this.currentFrame - 1) * s, 0, s, s, this.x, this.y, this.width, this.height), l.restore()
+		}
+		getMapX() {
+			return parseInt(this.x / s)
+		}
+		getMapY() {
+			return parseInt(this.y / s)
+		}
+		getMapXRightSide() {
+			return parseInt((this.x * 0.99 + s) / s)
+		}
+		getMapYRightSide() {
+			return parseInt((this.y * 0.99 + s) / s)
+		}
 	}
-	changeAnimation() {
-		this.currentFrame = this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1
+	class fe {
+		constructor(e, n, o, i, c, r, h, y, p, u) {
+			;(this.x = e),
+				(this.y = n),
+				(this.width = o),
+				(this.height = i),
+				(this.speed = c),
+				(this.direction = v),
+				(this.imageX = r),
+				(this.imageY = h),
+				(this.imageHeight = p),
+				(this.imageWidth = y),
+				(this.range = u),
+				(this.randomTargetIndex = parseInt(Math.random() * 4)),
+				(this.target = W[this.randomTargetIndex]),
+				setInterval(() => {
+					this.changeRandomDirection()
+				}, 1e4)
+		}
+		changeRandomDirection() {
+			;(this.randomTargetIndex += parseInt(Math.random() * 4)), (this.randomTargetIndex = this.randomTargetIndex % 4)
+		}
+		moveProcess() {
+			if ((this.isInRange() ? (this.target = f) : (this.target = W[this.randomTargetIndex]), this.changeDirectionIfPossible(), this.moveForwards(), this.checkCollisions())) {
+				this.moveBackwards()
+				return
+			}
+		}
+		moveBackwards() {
+			switch (this.direction) {
+				case v:
+					this.x -= this.speed
+					break
+				case I:
+					this.y += this.speed
+					break
+				case S:
+					this.x += this.speed
+					break
+				case q:
+					this.y -= this.speed
+					break
+			}
+		}
+		moveForwards() {
+			switch (this.direction) {
+				case v:
+					this.x += this.speed
+					break
+				case I:
+					this.y -= this.speed
+					break
+				case S:
+					this.x -= this.speed
+					break
+				case q:
+					this.y += this.speed
+					break
+			}
+		}
+		checkCollisions() {
+			let e = !1
+			return (a[parseInt(this.y / s)][parseInt(this.x / s)] == 1 || a[parseInt(this.y / s + 0.9999)][parseInt(this.x / s)] == 1 || a[parseInt(this.y / s)][parseInt(this.x / s + 0.9999)] == 1 || a[parseInt(this.y / s + 0.9999)][parseInt(this.x / s + 0.9999)] == 1) && (e = !0), e
+		}
+		isInRange() {
+			let e = Math.abs(f.getMapX() - this.getMapX()),
+				n = Math.abs(f.getMapY() - this.getMapY())
+			return Math.sqrt(e * e + n * n) <= this.range
+		}
+		changeDirectionIfPossible() {
+			let e = this.direction
+			if (((this.direction = this.calculateNewDirection(a, parseInt(this.target.x / s), parseInt(this.target.y / s))), typeof this.direction > 'u')) {
+				this.direction = e
+				return
+			}
+			this.getMapY() != this.getMapYRightSide() && (this.direction == S || this.direction == v) && (this.direction = I), this.getMapX() != this.getMapXRightSide() && this.direction == I && (this.direction = S), this.moveForwards(), this.checkCollisions() ? (this.moveBackwards(), (this.direction = e)) : this.moveBackwards()
+		}
+		calculateNewDirection(e, n, o) {
+			let i = []
+			for (let r = 0; r < e.length; r++) i[r] = e[r].slice()
+			let c = [{x: this.getMapX(), y: this.getMapY(), rightX: this.getMapXRightSide(), rightY: this.getMapYRightSide(), moves: []}]
+			for (; c.length > 0; ) {
+				let r = c.shift()
+				if (r.x == n && r.y == o) return r.moves[0]
+				{
+					i[r.y][r.x] = 1
+					let h = this.addNeighbors(r, i)
+					for (let y = 0; y < h.length; y++) c.push(h[y])
+				}
+			}
+			return 1
+		}
+		addNeighbors(e, n) {
+			let o = [],
+				i = n.length,
+				c = n[0].length
+			if (e.x - 1 >= 0 && e.x - 1 < i && n[e.y][e.x - 1] != 1) {
+				let r = e.moves.slice()
+				r.push(S), o.push({x: e.x - 1, y: e.y, moves: r})
+			}
+			if (e.x + 1 >= 0 && e.x + 1 < i && n[e.y][e.x + 1] != 1) {
+				let r = e.moves.slice()
+				r.push(v), o.push({x: e.x + 1, y: e.y, moves: r})
+			}
+			if (e.y - 1 >= 0 && e.y - 1 < c && n[e.y - 1][e.x] != 1) {
+				let r = e.moves.slice()
+				r.push(I), o.push({x: e.x, y: e.y - 1, moves: r})
+			}
+			if (e.y + 1 >= 0 && e.y + 1 < c && n[e.y + 1][e.x] != 1) {
+				let r = e.moves.slice()
+				r.push(q), o.push({x: e.x, y: e.y + 1, moves: r})
+			}
+			return o
+		}
+		changeAnimation() {
+			this.currentFrame = this.currentFrame == this.frameCount ? 1 : this.currentFrame + 1
+		}
+		draw() {
+			l.save(), l.drawImage(ye, this.imageX, this.imageY, this.imageWidth, this.imageHeight, this.x, this.y, this.width, this.height), l.restore()
+		}
+		getMapX() {
+			return parseInt(this.x / s)
+		}
+		getMapY() {
+			return parseInt(this.y / s)
+		}
+		getMapXRightSide() {
+			return parseInt((this.x * 0.99 + s) / s)
+		}
+		getMapYRightSide() {
+			return parseInt((this.y * 0.99 + s) / s)
+		}
 	}
-	draw() {
-		l.save(), l.drawImage(ye, this.imageX, this.imageY, this.imageWidth, this.imageHeight, this.x, this.y, this.width, this.height), l.restore()
-	}
-	getMapX() {
-		return parseInt(this.x / s)
-	}
-	getMapY() {
-		return parseInt(this.y / s)
-	}
-	getMapXRightSide() {
-		return parseInt((this.x * 0.99 + s) / s)
-	}
-	getMapYRightSide() {
-		return parseInt((this.y * 0.99 + s) / s)
-	}
-}
-const X = document.getElementById('canvas'),
-	l = X.getContext('2d'),
-	j = document.getElementById('animation'),
-	ye = document.getElementById('ghosts'),
-	_ = (t, e, n, o, i) => {
-		;(l.fillStyle = i), l.fillRect(t, e, n, o)
-	}
-let ge = 30,
-	s = 20,
-	f,
-	pe = '#fff',
-	k = s / 2,
-	w = (s - k) / 2,
-	Y = 'black',
-	xe = '#fff',
-	b = [],
-	we = 4,
-	R = 3,
-	H = 0,
-	N = [
-		{x: 0, y: 0},
-		{x: 176, y: 0},
-		{x: 0, y: 121},
-		{x: 176, y: 121},
+	const X = document.getElementById('canvas'),
+		l = X.getContext('2d'),
+		j = document.getElementById('animation'),
+		ye = document.getElementById('ghosts'),
+		_ = (t, e, n, o, i) => {
+			;(l.fillStyle = i), l.fillRect(t, e, n, o)
+		}
+	let ge = 30,
+		s = 20,
+		f,
+		pe = '#fff',
+		k = s / 2,
+		w = (s - k) / 2,
+		Y = 'black',
+		xe = '#fff',
+		b = [],
+		we = 4,
+		R = 3,
+		H = 0,
+		N = [
+			{x: 0, y: 0},
+			{x: 176, y: 0},
+			{x: 0, y: 121},
+			{x: 176, y: 121},
+		]
+	const v = 4,
+		I = 3,
+		S = 2,
+		q = 1
+	let a = [
+		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+		[1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1],
+		[1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1],
+		[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+		[1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1],
+		[1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1],
+		[1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1],
+		[0, 0, 0, 0, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 0, 0, 0, 0],
+		[1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1],
+		[1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1],
+		[1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1],
+		[0, 0, 0, 0, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 0, 0, 0, 0],
+		[0, 0, 0, 0, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 0, 0, 0, 0],
+		[1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1],
+		[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+		[1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1],
+		[1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1],
+		[1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 2, 1, 1],
+		[1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1],
+		[1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1],
+		[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
+		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	]
-const v = 4,
-	I = 3,
-	S = 2,
-	q = 1
-let a = [
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
-	[1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1],
-	[1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1],
-	[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
-	[1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1],
-	[1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1],
-	[1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1],
-	[0, 0, 0, 0, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 0, 0, 0, 0],
-	[1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1],
-	[1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1],
-	[1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1],
-	[0, 0, 0, 0, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 0, 0, 0, 0],
-	[0, 0, 0, 0, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 0, 0, 0, 0],
-	[1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1],
-	[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
-	[1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1],
-	[1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1],
-	[1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 2, 1, 1],
-	[1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1],
-	[1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1],
-	[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-]
-for (let t = 0; t < a.length; t++) for (let e = 0; e < a[0].length; e++) a[t][e] === 2 && H++
-const W = [
-	{x: 1 * s, y: 1 * s},
-	{x: 1 * s, y: (a.length - 2) * s},
-	{x: (a[0].length - 2) * s, y: s},
-	{x: (a[0].length - 2) * s, y: (a.length - 2) * s},
-]
-function z() {
-	f = new me(s, s, s, s, s / 5)
-}
-const K = () => {
-		Ye(), ke()
-	},
-	U = setInterval(K, 1e3 / ge),
-	ke = () => {
-		f.moveProcess(), f.eat()
-		for (let t = 0; t < b.length; t++) b[t].moveProcess()
-		f.checkGhostCollision() && Ie(), B >= H && (Me(), clearInterval(U))
-	},
-	ve = () => {
-		;(l.font = '500 25px Montserrat'), (l.fillStyle = 'white'), l.fillText('Lives:', 200, s * a.length + 30)
-		for (let t = 0; t < R; t++) l.drawImage(j, 2 * s, 0, s, s, 270 + t * s, s * a.length + 12, s, s)
-	},
-	Ie = () => {
-		z(), J(), R--, R == 0 && ((document.querySelector('.pacman__reload').style.display = 'block'), Se())
-	},
-	Se = () => {
-		be(), clearInterval(U)
-	},
-	be = () => {
-		;(l.font = 'bold 50px Montserrat'), (l.fillStyle = 'red'), l.fillText('Game Over', 80, 250)
-	},
-	Me = () => {
-		;(l.font = 'bold 50px Montserrat'), (l.fillStyle = 'darkgreen'), l.fillText('You Won', 80, 250), (document.querySelector('.pacman__reload').style.display = 'block')
+	for (let t = 0; t < a.length; t++) for (let e = 0; e < a[0].length; e++) a[t][e] === 2 && H++
+	const W = [
+		{x: 1 * s, y: 1 * s},
+		{x: 1 * s, y: (a.length - 2) * s},
+		{x: (a[0].length - 2) * s, y: s},
+		{x: (a[0].length - 2) * s, y: (a.length - 2) * s},
+	]
+	function z() {
+		f = new me(s, s, s, s, s / 5)
 	}
-let B = 0
-function _e() {
-	return B++
-}
-function Ce() {
-	;(l.font = '500 25px Montserrat '), (l.marginTop = '20px'), (l.fillStyle = 'white'), l.fillText(`Score: ${B}`, 0, s * a.length + 30)
-}
-const J = () => {
-		b = []
-		for (let t = 0; t < we; t++) {
-			let e = new fe(9 * s + (t % 2 == 0 ? 0 : 1) * s, 10 * s + (t % 2 == 0 ? 0 : 1) * s, s, s, f.speed / 2, N[t % 4].x, N[t % 4].y, 124, 116, 6 + t)
-			b.push(e)
+	const K = () => {
+			Ye(), ke()
+		},
+		U = setInterval(K, 1e3 / ge),
+		ke = () => {
+			f.moveProcess(), f.eat()
+			for (let t = 0; t < b.length; t++) b[t].moveProcess()
+			f.checkGhostCollision() && Ie(), B >= H && (Me(), clearInterval(U))
+		},
+		ve = () => {
+			;(l.font = '500 25px Montserrat'), (l.fillStyle = 'white'), l.fillText('Lives:', 200, s * a.length + 30)
+			for (let t = 0; t < R; t++) l.drawImage(j, 2 * s, 0, s, s, 270 + t * s, s * a.length + 12, s, s)
+		},
+		Ie = () => {
+			z(), J(), R--, R == 0 && ((document.querySelector('.pacman__reload').style.display = 'block'), Se())
+		},
+		Se = () => {
+			be(), clearInterval(U)
+		},
+		be = () => {
+			;(l.font = 'bold 50px Montserrat'), (l.fillStyle = 'red'), l.fillText('Game Over', 80, 250)
+		},
+		Me = () => {
+			;(l.font = 'bold 50px Montserrat'), (l.fillStyle = 'darkgreen'), l.fillText('You Won', 80, 250), (document.querySelector('.pacman__reload').style.display = 'block')
 		}
-	},
-	qe = () => {
-		for (let t = 0; t < a.length; t++) for (let e = 0; e < a[0].length; e++) a[t][e] == 2 && _(e * s + s / 3, t * s + s / 3, s / 3, s / 3, xe)
-	},
-	Le = () => {
-		for (let t = 0; t < b.length; t++) b[t].draw()
-	},
-	Ye = () => {
-		_(0, 0, X.width, X.height, 'black'), Ee(), qe(), f.draw(), Ce(), Le(), ve()
-	},
-	Ee = () => {
-		for (let t = 0; t < a.length; t++) for (let e = 0; e < a[0].length; e++) a[t][e] == 1 && _(e * s, t * s, s, s, pe), e > 0 && a[t][e - 1] == 1 && _(e * s, t * s + w, k + w, k, Y), e < a[0].length - 1 && a[t][e + 1] == 1 && _(e * s + w, t * s + w, k + w, k, Y), t > 0 && a[t - 1][e] == 1 && _(e * s + w, t * s, k, k + w, Y), t < a.length - 1 && a[t + 1][e] == 1 && _(e * s + w, t * s + w, k, k + w, Y)
+	let B = 0
+	function _e() {
+		return B++
 	}
-z()
-J()
-K()
-window.addEventListener('keydown', t => {
-	let e = t.keyCode
-	setTimeout(() => {
-		e == 37 || e == 65 ? (f.nextDirection = S) : e == 38 || e == 87 ? (f.nextDirection = I) : e == 39 || e == 68 ? (f.nextDirection = v) : (e == 40 || e == 83) && (f.nextDirection = q)
-	}, 1)
-})
+	function Ce() {
+		;(l.font = '500 25px Montserrat '), (l.marginTop = '20px'), (l.fillStyle = 'white'), l.fillText(`Score: ${B}`, 0, s * a.length + 30)
+	}
+	const J = () => {
+			b = []
+			for (let t = 0; t < we; t++) {
+				let e = new fe(9 * s + (t % 2 == 0 ? 0 : 1) * s, 10 * s + (t % 2 == 0 ? 0 : 1) * s, s, s, f.speed / 2, N[t % 4].x, N[t % 4].y, 124, 116, 6 + t)
+				b.push(e)
+			}
+		},
+		qe = () => {
+			for (let t = 0; t < a.length; t++) for (let e = 0; e < a[0].length; e++) a[t][e] == 2 && _(e * s + s / 3, t * s + s / 3, s / 3, s / 3, xe)
+		},
+		Le = () => {
+			for (let t = 0; t < b.length; t++) b[t].draw()
+		},
+		Ye = () => {
+			_(0, 0, X.width, X.height, 'black'), Ee(), qe(), f.draw(), Ce(), Le(), ve()
+		},
+		Ee = () => {
+			for (let t = 0; t < a.length; t++) for (let e = 0; e < a[0].length; e++) a[t][e] == 1 && _(e * s, t * s, s, s, pe), e > 0 && a[t][e - 1] == 1 && _(e * s, t * s + w, k + w, k, Y), e < a[0].length - 1 && a[t][e + 1] == 1 && _(e * s + w, t * s + w, k + w, k, Y), t > 0 && a[t - 1][e] == 1 && _(e * s + w, t * s, k, k + w, Y), t < a.length - 1 && a[t + 1][e] == 1 && _(e * s + w, t * s + w, k, k + w, Y)
+		}
+	z()
+	J()
+	K()
+	window.addEventListener('keydown', t => {
+		let e = t.keyCode
+		setTimeout(() => {
+			e == 37 || e == 65 ? (f.nextDirection = S) : e == 38 || e == 87 ? (f.nextDirection = I) : e == 39 || e == 68 ? (f.nextDirection = v) : (e == 40 || e == 83) && (f.nextDirection = q)
+		}, 1)
+	})
+}
