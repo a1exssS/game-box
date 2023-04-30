@@ -260,6 +260,8 @@ if (document.querySelector('.main-snake')) {
 	}),
 		window.requestAnimationFrame(o)
 }
+if (document.querySelector('.main-pacman')) {
+}
 class me {
 	constructor(e, n, o, i, c) {
 		;(this.x = e),
