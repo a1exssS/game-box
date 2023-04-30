@@ -376,7 +376,7 @@ a:active {
 }
 
 .minesweeper__board [data-status=mine] {
-	background-image: url(./assets/bomb-svgrepo-com-e24a10c1.svg);
+	background-image: url(./bomb-svgrepo-com-e24a10c1.svg);
 	background-position: 100%;
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -388,7 +388,7 @@ a:active {
 }
 
 .minesweeper__board [data-status=marked] {
-	background-image: url(./assets/flag-svgrepo-com-d55afbef.svg);
+	background-image: url(./flag-svgrepo-com-d55afbef.svg);
 	background-position: 100%;
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -565,7 +565,7 @@ a:active {
 }
 
 .snake__food {
-	background-image: url(./assets/apple-6-svgrepo-com-8368d98c.svg);
+	background-image: url(./apple-6-svgrepo-com-8368d98c.svg);
 	background-position: 100%;
 	background-size: contain;
 	background-repeat: no-repeat;
